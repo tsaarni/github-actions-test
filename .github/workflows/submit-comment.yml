@@ -3,21 +3,10 @@ on:
     branches:
       - main
 
-jobs:
-  comment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'comment!'
-            })
+permissions:
+  issues: write
 
+jobs:
   welcome:
     runs-on: ubuntu-latest
     steps:
@@ -39,6 +28,8 @@ jobs:
                 continue
               }
 
+              // Consider everyone as new contributor by not checking following:
+              //
               //if (issue.pull_request) {
               //  return // Creator is already a contributor.
               //}
