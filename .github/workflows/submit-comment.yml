@@ -3,12 +3,12 @@ on:
     branches:
       - main
 
-permissions:
-  issues: write
 
 jobs:
   welcome:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - uses: actions/github-script@v6
         with:
